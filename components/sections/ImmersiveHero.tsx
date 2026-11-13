@@ -71,17 +71,17 @@ export function ImmersiveHero() {
       <div className="immersive-hero__stage" aria-hidden="true">
         <svg className="hero-scroll__mask-defs" focusable="false" aria-hidden="true">
           <defs>
-            <clipPath id="kanaar-door-arch" clipPathUnits="objectBoundingBox">
+            {/* <clipPath id="kanaar-door-arch" clipPathUnits="objectBoundingBox">
               <path d="M0.015,1 L0.015,0.68 Q0.015,0.06,0.5,0.012 Q0.985,0.06,0.985,0.68 L0.985,1 Z" />
-            </clipPath>
+            </clipPath> */}
           </defs>
         </svg>
-        <div className="hero-scroll__portal-glow" />
+        {/* <div className="hero-scroll__portal-glow" /> */}
         <div className="hero-scroll__fallback">
-          <ArchMark showDetails />
+          {/* <ArchMark showDetails /> */}
         </div>
         <div className="hero-scroll__world">
-          {webgl ? <Hero3DScene progressRef={progressRef} compact={compact} /> : null}
+          {/* {webgl ? <Hero3DScene progressRef={progressRef} compact={compact} /> : null} */}
         </div>
         <div className="hero-scroll__photo">
           <Image
