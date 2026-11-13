@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Composed additions
+   ========================================================================== */
+
+html {
+  scroll-padding-top: calc(var(--header-h) + 20px);
+}
+
+.gallery__item {
+  padding: 0;
+}
+
+/* The quiet lead inside About */
+.about__pull {
+  margin-top: 1.4rem;
+  max-width: 18ch;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.3vw, 2.05rem);
+  line-height: 1.28;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+
+.room__note {
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Menu emblem */
+.menu__mark {
+  width: 52px;
+  color: var(--gold);
+  opacity: 0.9;
+}
+
+/* Footer replay */
+.footer__replay {
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  transition: color 0.3s var(--ease-out);
+}
+
+.footer__replay:hover {
+  color: var(--gold-ink);
+}
+
+/* Lenis smooth-scroll control */
+.no-scroll {
+  overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .menu__body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu__mark {
+    display: none;
+  }
+
+  .menu__aside .btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .menu__aside {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .menu__aside h4 {
+    margin-bottom: 0.35rem;
+  }
+
+  .menu__aside p,
+  .menu__aside a:not(.btn) {
+    line-height: 1.55;
+  }
+
+  .menu__aside .btn {
+    margin-top: 0.4rem;
+  }
+
+  .room__note {
+    white-space: normal;
+  }
+
+  .about__pull {
+    max-width: 22ch;
+  }
+}
