@@ -103,7 +103,7 @@ export const EVENT_SPACES: EventSpace[] = [
     scene: "conference" as const,
     // The grand hall is the available event-space photograph; this tighter crop
     // emphasises its lighting and formal layout for the conference card.
-    image: IMAGES.banquet,
+    image: IMAGES.conference,
     imagePosition: "68% 45%",
   },
   {
@@ -192,27 +192,6 @@ export const GALLERY: GalleryItem[] = [
     span: "wide",
     image: IMAGES.banquet,
     imagePosition: "50% 50%",
-  },
-  {
-    caption: "A Kanaar welcome",
-    scene: "forest",
-    span: "tall",
-    image: IMAGES.welcome,
-    imagePosition: "32% 42%",
-  },
-  {
-    caption: "A generous room",
-    scene: "pool",
-    span: "normal",
-    image: IMAGES.elegantRoom,
-    imagePosition: "56% 60%",
-  },
-  {
-    caption: "Grand hall details",
-    scene: "terrace",
-    span: "normal",
-    image: IMAGES.banquet,
-    imagePosition: "76% 44%",
   },
 ];
 

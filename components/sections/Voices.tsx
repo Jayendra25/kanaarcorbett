@@ -1,23 +1,60 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/content";
 import { ArrowLeft, ArrowRight } from "@/components/ui/Icons";
 
+const AUTO_ROTATE_INTERVAL = 5000; // 5 seconds
+
 export function Voices() {
   const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const total = TESTIMONIALS.length;
   const item = TESTIMONIALS[index];
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const go = (direction: number) => {
     setIndex((current) => (current + direction + total) % total);
+    // Reset timer when user manually navigates
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    startAutoRotate();
   };
+
+  const startAutoRotate = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    timerRef.current = setInterval(() => {
+      setIndex((current) => (current + 1) % total);
+    }, AUTO_ROTATE_INTERVAL);
+  };
+
+  useEffect(() => {
+    if (!isPaused) {
+      startAutoRotate();
+    }
+    
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isPaused, total]);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
 
   return (
     <section className="section voices" aria-labelledby="voices-title">
       <div className="shell">
-        <div className="voices__inner">
+        <div 
+          className="voices__inner"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <div className="section-label" style={{ justifyContent: "center" }}>
             <span>07</span>
             <span>Guest voices</span>

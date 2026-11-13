@@ -42,6 +42,12 @@ export const IMAGES = {
     width: 1250,
     height: 1000,
   },
+  conference: {
+    src: "/Confrence.png",
+    alt: "Hotel Kanaar Corbett architectural gate logo — ornate Indian arch design in amber gold",
+    width: 500,
+    height: 500,
+  },
   logoGate: {
     src: "/images/hotel/kanaar-logo-gate.webp",
     alt: "Hotel Kanaar Corbett architectural gate logo — ornate Indian arch design in amber gold",
