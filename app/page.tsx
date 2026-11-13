@@ -6,6 +6,7 @@ import { Dining } from "@/components/sections/Dining";
 import { Celebrations } from "@/components/sections/Celebrations";
 import { Corbett } from "@/components/sections/Corbett";
 import { Gallery } from "@/components/sections/Gallery";
+import { Parking } from "@/components/sections/Parking";
 import { Voices } from "@/components/sections/Voices";
 import { Contact } from "@/components/sections/Contact";
 
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Celebrations />
       <Corbett />
       <Gallery />
+      <Parking />
       <Voices />
       <Contact />
     </>

@@ -2067,6 +2067,14 @@
   .space__desc {
     font-size: 0.78rem;
   }
+
+  .space__body {
+    padding: clamp(1rem, 1.6vw, 1.4rem);
+  }
+
+  .space__name {
+    font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -2129,6 +2137,10 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  .space {
+    min-height: 100%;
+  }
+
   .space:last-child {
     grid-column: 1 / -1;
     display: grid;
@@ -2138,6 +2150,11 @@
   .space:last-child .space__media {
     height: 100%;
     aspect-ratio: auto;
+  }
+
+  .space:last-child .space__body {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -2375,19 +2392,64 @@
 
   .spaces {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .space {
+    display: flex;
+    flex-direction: column;
   }
 
   .space:last-child {
     grid-column: auto;
     display: flex;
+    grid-template-columns: none;
   }
 
   .space:last-child .space__media {
     aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .space__media {
+    aspect-ratio: 4 / 3.2;
+  }
+
+  .space__body {
+    padding: clamp(1.4rem, 3vw, 1.8rem);
+  }
+
+  .space__name {
+    font-size: clamp(1.35rem, 4vw, 1.6rem);
+    margin-top: 0.65rem;
+  }
+
+  .space__type {
+    font-size: 0.5625rem;
+  }
+
+  .space__capacity {
+    font-size: 0.6875rem;
+  }
+
+  .space__desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
   }
 
   .space__details {
     display: flex;
+    margin-top: 1rem;
+  }
+
+  .space__details li {
+    font-size: 0.5625rem;
+    padding: 0.32rem 0.5rem;
+  }
+
+  .space__link {
+    padding-top: 1.2rem;
+    font-size: 0.625rem;
   }
 
   .celebrations__foot {
@@ -2397,6 +2459,23 @@
 
   .celebrations__occasions li {
     padding: 0.36rem 0.5rem;
+  }
+
+  .space__index {
+    width: 22px;
+    height: 22px;
+    font-size: 0.5625rem;
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .space__desc {
+    font-size: 0.8125rem;
+  }
+
+  .celebrations__bg {
+    opacity: 0.04;
+    width: min(60vw, 500px);
   }
 
   .contact__map-head {
@@ -2497,6 +2576,34 @@
     font-size: 2rem;
   }
 
+  .space__media {
+    aspect-ratio: 4 / 3.4;
+  }
+
+  .space__body {
+    padding: 1.2rem;
+  }
+
+  .space__name {
+    font-size: 1.25rem;
+  }
+
+  .celebrations__head {
+    margin-bottom: 2rem;
+  }
+
+  .celebrations__occasions {
+    margin-top: 1.2rem;
+  }
+
+  .celebrations__foot {
+    margin-top: 2rem;
+  }
+
+  .celebrations__foot p {
+    font-size: clamp(1rem, 4.5vw, 1.2rem);
+  }
+
   .voices__stage {
     min-height: 330px;
   }
@@ -2536,5 +2643,155 @@
 
   .story__mobile-media {
     aspect-ratio: 4 / 3;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Parking Facilities
+   -------------------------------------------------------------------------- */
+
+.parking {
+  background: var(--warm-white);
+}
+
+.parking .section-head {
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.parking .section-head__aside {
+  padding-bottom: 0;
+}
+
+.parking__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.8rem, 3vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.parking__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  transition: border-color 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out);
+}
+
+.parking__card:hover {
+  border-color: rgba(185, 154, 103, 0.5);
+  box-shadow: 0 12px 40px rgba(36, 33, 29, 0.06);
+}
+
+.parking__icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(185, 154, 103, 0.3);
+  background: var(--warm-white);
+  transition: background-color 0.5s var(--ease-out), border-color 0.5s var(--ease-out);
+}
+
+.parking__icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: filter 0.5s var(--ease-out);
+}
+
+.parking__card:hover .parking__icon {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.parking__card:hover .parking__icon img {
+  filter: brightness(0) invert(1);
+}
+
+.parking__title {
+  margin-top: clamp(1.4rem, 2.5vw, 2rem);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.parking__subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+.parking__description {
+  margin-top: 1.2rem;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--body);
+  max-width: 38ch;
+}
+
+.parking__features {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.parking__features li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.8125rem;
+  color: var(--body);
+  line-height: 1.6;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.parking__features li::before {
+  content: "";
+  flex: none;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.parking__features li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Responsive: Parking */
+@media (max-width: 900px) {
+  .parking__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .parking__card {
+    padding: clamp(1.75rem, 5vw, 2.5rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .parking__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .parking__title {
+    font-size: clamp(1.4rem, 6vw, 1.85rem);
   }
 }

@@ -106,3 +106,24 @@ export function Phone({ className, size }: IconProps) {
     </svg>
   );
 }
+
+export function ParkingIndoor({ className, size }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M8 10h2a2 2 0 0 1 0 4H8V10Z" />
+      <path d="M8 10v8" />
+    </svg>
+  );
+}
+
+export function ParkingOutdoor({ className, size }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M5 19v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7" />
+      <path d="M5 19h14" />
+      <path d="M10 10h2a2 2 0 0 1 0 4h-2V10Z" />
+      <path d="M10 10v8" />
+    </svg>
+  );
+}

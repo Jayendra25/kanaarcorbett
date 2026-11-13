@@ -8,6 +8,7 @@ export const NAV_LINKS = [
   { label: "Celebrations", href: "#celebrations" },
   { label: "Corbett", href: "#corbett" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Parking", href: "#parking" },
 ];
 
 export const CONTACT = {

@@ -56,7 +56,7 @@ export function Voices() {
           onMouseLeave={handleMouseLeave}
         >
           <div className="section-label" style={{ justifyContent: "center" }}>
-            <span>07</span>
+            <span>08</span>
             <span>Guest voices</span>
           </div>
           <h2 id="voices-title" className="sr-only">
