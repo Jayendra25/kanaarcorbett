@@ -68,6 +68,7 @@ export function Menu({ open, onClose }: MenuProps) {
         >
           <div className="menu__top">
             <a className="brand" href="#top" onClick={onClose} aria-label="Hotel Kanaar Corbett, home">
+              <span className="brand__hotel">Hotel</span>
               <span className="brand__name">
                 Kanaar <em>Corbett</em>
               </span>

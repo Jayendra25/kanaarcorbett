@@ -38,6 +38,7 @@ export function Header() {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           <a className="brand" href="#top" aria-label="Hotel Kanaar Corbett, back to top">
+            <span className="brand__hotel">Hotel</span>
             <span className="brand__name">
               Kanaar <em>Corbett</em>
             </span>

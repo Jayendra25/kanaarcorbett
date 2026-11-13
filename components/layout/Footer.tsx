@@ -19,6 +19,7 @@ export function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <a className="brand" href="#top" aria-label="Hotel Kanaar Corbett, back to top">
+              <span className="brand__hotel">Hotel</span>
               <span className="brand__name">
                 Kanaar <em>Corbett</em>
               </span>
@@ -88,9 +89,10 @@ export function Footer() {
         </div>
 
         <div className="footer__mark">
-          <p className="footer__wordmark">
-            Kanaar <em>Corbett</em>
-          </p>
+          <div className="footer__wordmark">
+            <span className="footer__hotel">Hotel</span>
+            <p>Kanaar <em>Corbett</em></p>
+          </div>
           <ArchMark className="footer__monogram" showDetails={false} />
         </div>
 
