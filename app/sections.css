@@ -149,7 +149,8 @@
   height: 100%;
 }
 
-.hero__arch .plate__art {
+.hero__arch .plate__art,
+.hero__arch .plate__img {
   transform-origin: center top;
 }
 
@@ -433,7 +434,8 @@
   height: 100%;
 }
 
-.about__media-main .plate__art {
+.about__media-main .plate__art,
+.about__media-main .plate__img {
   transform-origin: center top;
 }
 
@@ -605,12 +607,14 @@
   height: 100%;
 }
 
-.room__media .plate__art {
+.room__media .plate__art,
+.room__media .plate__img {
   transition: transform 1.2s var(--ease-out);
   transform-origin: center center;
 }
 
-.room:hover .room__media .plate__art {
+.room:hover .room__media .plate__art,
+.room:hover .room__media .plate__img {
   transform: scale(1.045);
 }
 
@@ -804,7 +808,8 @@
   height: 100%;
 }
 
-.dining__main .plate__art {
+.dining__main .plate__art,
+.dining__main .plate__img {
   transform-origin: center;
 }
 
@@ -1033,11 +1038,13 @@
   height: 100%;
 }
 
-.space__media .plate__art {
+.space__media .plate__art,
+.space__media .plate__img {
   transition: transform 1.2s var(--ease-out);
 }
 
-.space:hover .space__media .plate__art {
+.space:hover .space__media .plate__art,
+.space:hover .space__media .plate__img {
   transform: scale(1.04);
 }
 
@@ -1419,11 +1426,13 @@
   height: 100%;
 }
 
-.gallery__item .plate__art {
+.gallery__item .plate__art,
+.gallery__item .plate__img {
   transition: transform 1.1s var(--ease-out);
 }
 
-.gallery__item:hover .plate__art {
+.gallery__item:hover .plate__art,
+.gallery__item:hover .plate__img {
   transform: scale(1.04);
 }
 

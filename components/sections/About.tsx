@@ -1,4 +1,5 @@
 import { OFFERINGS, STATS } from "@/lib/content";
+import { IMAGES } from "@/lib/images";
 import { Plate } from "@/components/media/Plate";
 import { ArrowRight } from "@/components/ui/Icons";
 
@@ -39,10 +40,10 @@ export function About() {
         <div className="about__body">
           <div className="about__media">
             <div className="about__media-main" data-reveal="clip">
-              <Plate scene="arch" caption="The garden court" />
+              <Plate scene="arch" caption="The garden court" image={IMAGES.elegantRoom} imagePosition="50% 44%" />
             </div>
             <div className="about__media-detail" data-reveal="fade" data-reveal-delay="0.3">
-              <Plate scene="facade" />
+              <Plate scene="facade" image={IMAGES.welcome} imagePosition="66% 42%" />
             </div>
             <span className="about__stamp">Peerumadara · Ramnagar</span>
           </div>

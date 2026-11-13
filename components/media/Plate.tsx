@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { useId } from "react";
+import type { SiteImage } from "@/lib/images";
 
 export type Scene =
   | "facade"
@@ -19,8 +21,12 @@ type PlateProps = {
   className?: string;
   ratio?: string;
   dark?: boolean;
-  /** Drop in a real photograph later; the artwork shows until then. */
-  src?: string;
+  /** Real property photography; the original artwork shows when omitted. */
+  image?: SiteImage;
+  /** CSS object-position used to frame the photograph inside the plate. */
+  imagePosition?: string;
+  sizes?: string;
+  priority?: boolean;
   alt?: string;
 };
 
@@ -114,7 +120,10 @@ export function Plate({
   className = "",
   ratio,
   dark = false,
-  src,
+  image,
+  imagePosition,
+  sizes,
+  priority,
   alt,
 }: PlateProps) {
   const uid = useId().replace(/[:]/g, "");
@@ -788,17 +797,29 @@ export function Plate({
 
   return (
     <div
-      className={`plate ${dark ? "plate--dark" : ""} ${className}`.trim()}
+      className={`plate ${dark ? "plate--dark" : ""} ${image ? "plate--photo" : ""} ${className}`.trim()}
       style={ratio ? { aspectRatio: ratio } : undefined}
       data-scene={scene}
-      data-placeholder="Replace with commissioned photography"
+      data-placeholder={image ? undefined : "Replace with commissioned photography"}
     >
-      <div className="plate__art" aria-hidden="true">
-        <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-          {content}
-        </svg>
-      </div>
-      {src ? <img className="plate__img" src={src} alt={alt ?? caption ?? ""} /> : null}
+      {image ? (
+        <Image
+          className="plate__img"
+          src={image.src}
+          alt={alt ?? image.alt}
+          fill
+          sizes={sizes ?? "(max-width: 900px) 100vw, 50vw"}
+          quality={88}
+          priority={priority}
+          style={{ objectPosition: imagePosition ?? "50% 50%" }}
+        />
+      ) : (
+        <div className="plate__art" aria-hidden="true">
+          <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            {content}
+          </svg>
+        </div>
+      )}
       {caption ? <div className="plate__caption">{caption}</div> : null}
     </div>
   );

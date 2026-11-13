@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useIntro } from "@/components/experience/IntroProvider";
+import { IMAGES } from "@/lib/images";
 import { Plate } from "@/components/media/Plate";
 import { ArchMark } from "@/components/media/ArchMark";
 import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
@@ -114,7 +115,7 @@ export function Hero() {
         <div className="hero__aside">
           <figure className="hero__figure">
             <div className="hero__arch">
-              <Plate scene="facade" />
+              <Plate scene="facade" image={IMAGES.welcome} imagePosition="66% 42%" priority />
             </div>
             <span className="hero__frame" aria-hidden="true" />
             <div className="hero__mini" aria-hidden="true">

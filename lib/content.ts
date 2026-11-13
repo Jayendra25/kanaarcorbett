@@ -1,3 +1,6 @@
+import type { Scene } from "@/components/media/Plate";
+import { IMAGES, type SiteImage } from "./images";
+
 export const NAV_LINKS = [
   { label: "The Hotel", href: "#hotel" },
   { label: "Stays", href: "#stays" },
@@ -39,6 +42,8 @@ export const ROOMS = [
       "Tea & coffee maker",
     ],
     scene: "room" as const,
+    image: IMAGES.standardRoom,
+    imagePosition: "66% 50%",
   },
   {
     index: "02",
@@ -56,11 +61,25 @@ export const ROOMS = [
       "Nespresso coffee station",
     ],
     scene: "suite" as const,
+    image: IMAGES.luxuryRoom,
+    imagePosition: "48% 55%",
     featured: true,
   },
 ];
 
-export const EVENT_SPACES = [
+type EventSpace = {
+  index: string;
+  name: string;
+  type: string;
+  capacity: string;
+  description: string;
+  details: string[];
+  scene: Scene;
+  image?: SiteImage;
+  imagePosition?: string;
+};
+
+export const EVENT_SPACES: EventSpace[] = [
   {
     index: "01",
     name: "Grand Banquet Hall",
@@ -70,6 +89,8 @@ export const EVENT_SPACES = [
       "Crystal chandeliers, a grand stage, considered acoustics, and graceful dining arrangements for the most important days.",
     details: ["Central air conditioning", "Grand stage setup", "Crystal lighting", "Buffet dining"],
     scene: "banquet" as const,
+    image: IMAGES.banquet,
+    imagePosition: "50% 50%",
   },
   {
     index: "02",
@@ -114,15 +135,53 @@ export const EXPERIENCES = [
   },
 ];
 
-export const GALLERY = [
-  { caption: "The arrival court", scene: "facade" as const, span: "tall" },
-  { caption: "Garden-facing arches", scene: "arch" as const, span: "wide" },
-  { caption: "Breakfast, unhurried", scene: "dining" as const, span: "normal" },
-  { caption: "A room to return to", scene: "room" as const, span: "normal" },
-  { caption: "Celebrations, held here", scene: "banquet" as const, span: "wide" },
-  { caption: "Into the wild", scene: "forest" as const, span: "tall" },
-  { caption: "Afternoons by the water", scene: "pool" as const, span: "normal" },
-  { caption: "The long verandah", scene: "terrace" as const, span: "normal" },
+type GalleryItem = {
+  caption: string;
+  scene: Scene;
+  span: "tall" | "wide" | "normal";
+  image?: SiteImage;
+  imagePosition?: string;
+};
+
+export const GALLERY: GalleryItem[] = [
+  {
+    caption: "The Kanaar welcome",
+    scene: "facade",
+    span: "tall",
+    image: IMAGES.welcome,
+    imagePosition: "66% 42%",
+  },
+  {
+    caption: "Warm light, soft linens",
+    scene: "arch",
+    span: "wide",
+    image: IMAGES.elegantRoom,
+    imagePosition: "50% 44%",
+  },
+  {
+    caption: "A room to return to",
+    scene: "room",
+    span: "normal",
+    image: IMAGES.luxuryRoom,
+    imagePosition: "48% 55%",
+  },
+  {
+    caption: "Space to settle in",
+    scene: "suite",
+    span: "normal",
+    image: IMAGES.standardRoom,
+    imagePosition: "58% 50%",
+  },
+  {
+    caption: "The grand banquet hall",
+    scene: "banquet",
+    span: "wide",
+    image: IMAGES.banquet,
+    imagePosition: "50% 50%",
+  },
+  { caption: "Into the wild", scene: "forest", span: "tall" },
+  { caption: "Afternoons by the water", scene: "pool", span: "normal" },
+  { caption: "The long verandah", scene: "terrace", span: "normal" },
 ];
 
 export const TESTIMONIALS = [

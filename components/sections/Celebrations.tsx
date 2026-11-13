@@ -48,7 +48,13 @@ export function Celebrations() {
             <article className="space" key={space.name} data-stagger-item>
               <div className="space__media">
                 <span className="space__index">{space.index}</span>
-                <Plate scene={space.scene} dark />
+                <Plate
+                  scene={space.scene}
+                  image={space.image}
+                  imagePosition={space.imagePosition}
+                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
+                  dark
+                />
               </div>
               <div className="space__body">
                 <span className="space__type">{space.type}</span>

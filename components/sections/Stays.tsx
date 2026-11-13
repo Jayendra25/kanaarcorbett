@@ -49,7 +49,12 @@ export function Stays() {
               <div className="room__media">
                 <span className="room__index">{room.index}</span>
                 {room.featured ? <span className="room__badge">Signature</span> : null}
-                <Plate scene={room.scene} />
+                <Plate
+                  scene={room.scene}
+                  image={room.image}
+                  imagePosition={room.imagePosition}
+                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 40vw"
+                />
               </div>
               <div className="room__body">
                 <span className="room__kicker">{room.kicker}</span>
