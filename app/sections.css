@@ -1995,6 +1995,43 @@
   border-color: var(--gold);
 }
 
+.contact__map {
+  grid-column: 1 / -1;
+  margin-top: clamp(1rem, 2vw, 2rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+}
+
+.contact__map-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact__map-head .eyebrow {
+  color: var(--muted);
+}
+
+.contact__map-head h3 {
+  margin-top: 0.65rem;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.contact__map iframe {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 42vw, 450px);
+  border: 1px solid var(--line) !important;
+  border-radius: 2px;
+  filter: saturate(0.72) sepia(0.06);
+}
+
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
@@ -2258,6 +2295,10 @@
     max-width: 16ch;
   }
 
+  .contact__map {
+    margin-top: 0;
+  }
+
   .voices__inner {
     padding-inline: 0.5rem;
   }
@@ -2356,6 +2397,15 @@
 
   .celebrations__occasions li {
     padding: 0.36rem 0.5rem;
+  }
+
+  .contact__map-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact__map iframe {
+    height: 320px;
   }
 
   .gallery__grid {

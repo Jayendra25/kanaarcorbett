@@ -105,7 +105,7 @@ export function Contact() {
   return (
     <section className="section contact" id="contact">
       <div className="shell">
-        <div className="contact__grid">
+          <div className="contact__grid">
           <div className="contact__copy">
             <div className="section-label">
               <span>08</span>
@@ -351,6 +351,29 @@ export function Contact() {
                 </div>
               </form>
             )}
+          </div>
+
+          <div className="contact__map" data-reveal data-reveal-delay="0.08">
+            <div className="contact__map-head">
+              <div>
+                <span className="eyebrow">Visit Hotel Kanaar Corbett</span>
+                <h3>Find your way to Corbett.</h3>
+              </div>
+              <a className="link-arrow" href={CONTACT.mapUrl} target="_blank" rel="noreferrer">
+                Get directions
+                <ArrowUpRight />
+              </a>
+            </div>
+            <iframe
+              title="Hotel Kanaar Corbett location in Peerumadara, Ramnagar"
+              src="https://www.google.com/maps?q=Peerumadara,+Uttarakhand+244715,+India&ll=29.3377768,79.0581322&z=14&output=embed"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
           </div>
         </div>
       </div>

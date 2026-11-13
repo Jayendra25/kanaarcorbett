@@ -1,4 +1,4 @@
-import { Hero } from "@/components/sections/Hero";
+import { ImmersiveHero } from "@/components/sections/ImmersiveHero";
 import { Strip } from "@/components/sections/Strip";
 import { About } from "@/components/sections/About";
 import { Stays } from "@/components/sections/Stays";
@@ -12,7 +12,7 @@ import { Contact } from "@/components/sections/Contact";
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <ImmersiveHero />
       <Strip />
       <About />
       <Stays />

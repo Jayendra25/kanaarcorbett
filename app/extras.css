@@ -1,6 +1,6 @@
-/* ==========================================================================
+/* ===========================================================================
    Composed additions
-   ========================================================================== */
+   =========================================================================== */
 
 html {
   scroll-padding-top: calc(var(--header-h) + 20px);
@@ -10,41 +10,38 @@ html {
   padding: 0;
 }
 
-/* The quiet lead inside About */
 .about__pull {
-  margin-top: 1.4rem;
   max-width: 18ch;
+  margin-top: 1.4rem;
+  color: var(--ink);
   font-family: var(--serif);
   font-size: clamp(1.5rem, 2.3vw, 2.05rem);
   line-height: 1.28;
   letter-spacing: -0.018em;
-  color: var(--ink);
 }
 
 .room__note {
+  color: var(--muted);
   font-size: 0.5625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
   white-space: nowrap;
 }
 
-/* Menu emblem */
 .menu__mark {
   width: 52px;
   color: var(--gold);
   opacity: 0.9;
 }
 
-/* Footer replay */
 .footer__replay {
+  color: var(--muted);
   font-size: 0.5625rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
   text-decoration: underline;
-  text-underline-offset: 4px;
   text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
+  text-transform: uppercase;
   transition: color 0.3s var(--ease-out);
 }
 
@@ -52,9 +49,303 @@ html {
   color: var(--gold-ink);
 }
 
-/* Lenis smooth-scroll control */
 .no-scroll {
   overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Full-viewport, scroll-scrubbed gate hero
+   -------------------------------------------------------------------------- */
+
+.immersive-hero {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #211a13;
+}
+
+.immersive-hero__stage,
+.hero-scroll__photo,
+.hero-scroll__world,
+.hero-scroll__fallback,
+.immersive-hero__scrim {
+  position: absolute;
+  inset: 0;
+}
+
+.immersive-hero__stage {
+  z-index: 1;
+}
+
+.hero-scroll__mask-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.hero-scroll__photo {
+  z-index: 1;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  background: #211a13;
+  transform-origin: 50% 50%;
+  will-change: transform, clip-path, opacity;
+}
+
+.hero-scroll__photo::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: "";
+  border: 0 solid rgba(255, 255, 255, 0.36);
+  pointer-events: none;
+}
+
+.hero-scroll__photo-vignette {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(17, 13, 9, 0.22), transparent 52%),
+    linear-gradient(0deg, rgba(15, 10, 6, 0.28), transparent 45%);
+}
+
+.immersive-hero__scrim {
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(16, 11, 7, 0.64) 0%, rgba(16, 11, 7, 0.34) 40%, rgba(16, 11, 7, 0.06) 70%, rgba(16, 11, 7, 0.17) 100%);
+  will-change: opacity;
+}
+
+.hero-scroll__portal-glow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: min(74vw, 980px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 239, 199, 0.38), rgba(222, 181, 109, 0.12) 30%, transparent 67%);
+  filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: opacity, transform;
+}
+
+.hero-scroll__world,
+.hero-scroll__fallback {
+  z-index: 3;
+  width: 100vw;
+  height: 100svh;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.hero-scroll__world,
+.hero-scroll__fallback {
+  opacity: 0;
+}
+
+.hero-scroll__world canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero-scroll__fallback {
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 13vh 38vw;
+  color: var(--gold);
+  filter: drop-shadow(0 24px 26px rgba(0, 0, 0, 0.34));
+}
+
+.hero-scroll__fallback svg {
+  width: min(100%, 460px);
+  height: auto;
+}
+
+.immersive-hero[data-webgl="false"] .hero-scroll__fallback {
+  opacity: 1;
+}
+
+.immersive-hero[data-webgl="true"] .hero-scroll__fallback,
+.immersive-hero[data-webgl="pending"] .hero-scroll__fallback {
+  opacity: 0;
+}
+
+.immersive-hero__copy {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: clamp(1.25rem, 6vw, 7.5rem);
+  width: min(48vw, 680px);
+  color: #fffaf1;
+  transform: translateY(-48%);
+  will-change: transform, opacity;
+}
+
+.immersive-hero__copy .eyebrow {
+  color: rgba(255, 248, 235, 0.78);
+}
+
+.immersive-hero__title {
+  margin-top: clamp(1rem, 2.6vh, 1.9rem);
+  color: #fffaf1;
+  font-family: var(--serif);
+  font-size: clamp(3.1rem, 6.2vw, 6.75rem);
+  font-weight: 400;
+  line-height: 0.97;
+  letter-spacing: -0.045em;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.2);
+}
+
+.immersive-hero__title em {
+  color: #e6c789;
+  font-style: italic;
+}
+
+.immersive-hero__desc {
+  max-width: 45ch;
+  margin-top: clamp(1.4rem, 3vh, 2.4rem);
+  color: rgba(255, 250, 241, 0.84);
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  line-height: 1.82;
+}
+
+.immersive-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.45rem, 3vh, 2.25rem);
+}
+
+.immersive-hero__actions .btn--ghost {
+  border-color: rgba(255, 250, 241, 0.52);
+  color: #fffaf1;
+}
+
+.hero-scroll__caption {
+  position: absolute;
+  z-index: 6;
+  right: 50%;
+  bottom: clamp(1.25rem, 3.5vh, 2.8rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: min(90vw, 390px);
+  padding: 0.85rem 1.25rem;
+  color: var(--ink);
+  background: rgba(250, 249, 246, 0.91);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.75rem);
+  line-height: 1.15;
+  text-align: center;
+  opacity: 0;
+  transform: translate(50%, 18px);
+  will-change: transform, opacity;
+}
+
+.hero-scroll__caption .link-arrow {
+  font-family: var(--sans);
+  font-size: 0.625rem;
+}
+
+.immersive-hero__foot {
+  position: absolute;
+  z-index: 6;
+  right: var(--gutter);
+  bottom: clamp(1.4rem, 3vh, 2rem);
+  left: var(--gutter);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: #fffaf1;
+  will-change: opacity;
+}
+
+.immersive-hero__foot-right {
+  display: flex;
+  gap: 1.4rem;
+  color: rgba(255, 250, 241, 0.72);
+  font-size: 0.5625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .immersive-hero__copy {
+    top: calc(var(--header-h) + 2.75rem);
+    left: var(--gutter);
+    width: min(76vw, 580px);
+    transform: none;
+  }
+
+  .immersive-hero__title {
+    font-size: clamp(3rem, 7vw, 5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .immersive-hero__copy {
+    top: calc(var(--header-h) + 1.65rem);
+    width: calc(100% - (var(--gutter) * 2));
+  }
+
+  .immersive-hero__title {
+    max-width: 8ch;
+    font-size: clamp(2.65rem, 12vw, 4rem);
+  }
+
+  .immersive-hero__desc {
+    max-width: 39ch;
+    margin-top: 1.15rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .immersive-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-top: 1.35rem;
+  }
+
+  .immersive-hero__actions .btn {
+    justify-content: center;
+    padding-inline: 0.6rem;
+    font-size: 0.57rem;
+  }
+
+  .hero-scroll__caption {
+    bottom: 1rem;
+    min-width: min(88vw, 340px);
+    padding: 0.7rem 1rem;
+    font-size: 1.05rem;
+  }
+
+  .immersive-hero__foot-right {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll__photo,
+  .hero-scroll__world,
+  .hero-scroll__portal-glow,
+  .immersive-hero__copy,
+  .hero-scroll__caption {
+    transition: none !important;
+  }
 }
 
 @media (max-width: 960px) {

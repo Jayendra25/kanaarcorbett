@@ -36,7 +36,13 @@ export function Corbett() {
           <div className="story__media">
             {EXPERIENCES.map((experience) => (
               <div className="story__scene" key={experience.title}>
-                <Plate scene={experience.scene} dark />
+                <Plate
+                  scene={experience.scene}
+                  image={experience.image}
+                  imagePosition={experience.imagePosition}
+                  sizes="100vw"
+                  dark
+                />
               </div>
             ))}
             <div className="story__media-foot">
@@ -73,7 +79,12 @@ export function Corbett() {
         {EXPERIENCES.map((experience) => (
           <article className="story__mobile-item" key={experience.title}>
             <div className="story__mobile-media" data-reveal="clip">
-              <Plate scene={experience.scene} />
+              <Plate
+                scene={experience.scene}
+                image={experience.image}
+                imagePosition={experience.imagePosition}
+                sizes="(max-width: 640px) 92vw, 100vw"
+              />
             </div>
             <div className="story__mobile-copy" data-reveal>
               <span className="story__panel-index">{experience.index}</span>

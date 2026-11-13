@@ -119,7 +119,7 @@ export function Hero() {
             </div>
             <span className="hero__frame" aria-hidden="true" />
             <div className="hero__mini" aria-hidden="true">
-              <Plate scene="forest" />
+              <Plate scene="banquet" image={IMAGES.banquet} imagePosition="70% 45%" />
             </div>
             <span className="hero__vertical">Peerumadara · Ramnagar</span>
           </figure>

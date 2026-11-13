@@ -1,38 +1,52 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { useIntro } from "@/components/experience/IntroProvider";
 import { ArchMark } from "@/components/media/ArchMark";
 import { IMAGES } from "@/lib/images";
 import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
 import { useHeroScrollTimeline } from "@/animations/useHeroScrollTimeline";
 
-// Lazy load 3D only on client
-const HotelLogo3D = dynamic(
-  () => import("@/components/three/HotelLogo3D").then(m => ({ default: m.HotelLogo3D })),
-  { ssr: false, loading: () => null }
+const Hero3DScene = dynamic(
+  () => import("@/components/three/Hero3DScene").then((module) => module.Hero3DScene),
+  { ssr: false, loading: () => null },
 );
 
-// 3D/icon objects representing hotel facilities
-const FACILITY_OBJECTS = [
-  { id: "dining",   emoji: "🍽️",  label: "Fine dining",      x: "-38%", y: "-28%", delay: "0s"    },
-  { id: "rooms",    emoji: "🛏️",  label: "42 rooms",         x: "38%",  y: "-28%", delay: "0.08s" },
-  { id: "banquet",  emoji: "🎊",  label: "Grand banquet",    x: "-44%", y: "12%",  delay: "0.16s" },
-  { id: "nature",   emoji: "🌿",  label: "Corbett forest",   x: "44%",  y: "12%",  delay: "0.24s" },
-  { id: "events",   emoji: "🏆",  label: "Corporate events", x: "0%",   y: "-44%", delay: "0.32s" },
-];
+function canUseWebGL() {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  } catch {
+    return false;
+  }
+}
 
 export function ImmersiveHero() {
-  const { introDone } = useIntro();
   const sectionRef = useRef<HTMLElement>(null);
+  const progressRef = useRef(0);
+  const [webgl, setWebgl] = useState<boolean | null>(null);
+  const [compact, setCompact] = useState(false);
 
-  useHeroScrollTimeline(sectionRef);
+  useHeroScrollTimeline(sectionRef, progressRef);
+
+  useEffect(() => {
+    setWebgl(canUseWebGL());
+    const query = window.matchMedia("(max-width: 1024px)");
+    const update = () => setCompact(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
 
   return (
-    <section className="immersive-hero" id="top" ref={sectionRef} aria-label="Hotel Kanaar Corbett — Welcome">
-      {/* ── Static header copy ── */}
+    <section
+      className="immersive-hero"
+      id="top"
+      ref={sectionRef}
+      data-webgl={webgl === null ? "pending" : webgl ? "true" : "false"}
+      aria-label="Hotel Kanaar Corbett — Welcome"
+    >
       <div className="immersive-hero__copy">
         <p className="eyebrow">A unit of The Corbett Ramdutt</p>
         <h1 className="immersive-hero__title">
@@ -42,7 +56,7 @@ export function ImmersiveHero() {
         </h1>
         <p className="immersive-hero__desc">
           Discover a welcoming destination for memorable stays, exceptional dining,
-          grand celebrations, and meaningful gatherings near Jim Corbett National Park.
+          and grand celebrations near Jim Corbett National Park.
         </p>
         <div className="immersive-hero__actions">
           <a className="btn btn--primary" href="#hotel">
@@ -54,61 +68,42 @@ export function ImmersiveHero() {
         </div>
       </div>
 
-      {/* ── Scroll-animated stage ── */}
       <div className="immersive-hero__stage" aria-hidden="true">
-
-        {/* Hotel photograph — scales down into gate */}
+        <svg className="hero-scroll__mask-defs" focusable="false" aria-hidden="true">
+          <defs>
+            <clipPath id="kanaar-door-arch" clipPathUnits="objectBoundingBox">
+              <path d="M0.015,1 L0.015,0.68 Q0.015,0.06,0.5,0.012 Q0.985,0.06,0.985,0.68 L0.985,1 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+        <div className="hero-scroll__portal-glow" />
+        <div className="hero-scroll__fallback">
+          <ArchMark showDetails />
+        </div>
+        <div className="hero-scroll__world">
+          {webgl ? <Hero3DScene progressRef={progressRef} compact={compact} /> : null}
+        </div>
         <div className="hero-scroll__photo">
           <Image
             src={IMAGES.welcome.src}
-            alt={IMAGES.welcome.alt}
+            alt=""
             fill
             priority
             quality={88}
+            sizes="(max-width: 1024px) 100vw, 62vw"
             style={{ objectFit: "cover", objectPosition: "66% 42%" }}
-            sizes="(max-width: 900px) 100vw, 60vw"
           />
           <div className="hero-scroll__photo-vignette" />
         </div>
-
-        {/* 3D Gate — grows from behind */}
-        <div className="hero-scroll__gate">
-          {/* SVG arch fallback / overlay */}
-          <div className="hero-scroll__gate-svg">
-            <ArchMark showDetails={true} />
-          </div>
-          {/* 3D canvas */}
-          <div className="hero-scroll__gate-3d">
-            <HotelLogo3D rotY={0} cameraZ={7} />
-          </div>
-        </div>
-
-        {/* Facility objects orbit */}
-        <div className="hero-scroll__objects">
-          {FACILITY_OBJECTS.map(obj => (
-            <div
-              key={obj.id}
-              className="hero-scroll__obj"
-              style={{
-                transform: `translate(${obj.x}, ${obj.y})`,
-                animationDelay: obj.delay,
-              }}
-              title={obj.label}
-            >
-              <span className="hero-scroll__obj-icon">{obj.emoji}</span>
-              <span className="hero-scroll__obj-label">{obj.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Caption after full reveal */}
-        <div className="hero-scroll__caption hero-scroll__caption--bottom">
+        <div className="immersive-hero__scrim" />
+        <div className="hero-scroll__caption">
           <p>Discover everything under one roof</p>
-          <a className="link-arrow" href="#hotel">Begin exploring <ArrowRight /></a>
+          <a className="link-arrow" href="#hotel" tabIndex={-1}>
+            Begin exploring <ArrowRight />
+          </a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="immersive-hero__foot">
         <span className="hero__scroll">
           Scroll to discover

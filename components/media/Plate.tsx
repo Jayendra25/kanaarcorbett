@@ -800,7 +800,6 @@ export function Plate({
       className={`plate ${dark ? "plate--dark" : ""} ${image ? "plate--photo" : ""} ${className}`.trim()}
       style={ratio ? { aspectRatio: ratio } : undefined}
       data-scene={scene}
-      data-placeholder={image ? undefined : "Replace with commissioned photography"}
     >
       {image ? (
         <Image

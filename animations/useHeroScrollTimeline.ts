@@ -1,86 +1,113 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, type MutableRefObject, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function useHeroScrollTimeline(sectionRef: React.RefObject<HTMLElement | null>) {
-  const cleanupRef = useRef<(() => void) | null>(null);
+function renderProgress(progressRef: MutableRefObject<number>, value: number) {
+  progressRef.current = value;
+  window.dispatchEvent(new Event("kanaar:hero-progress"));
+}
 
-  useEffect(() => {
+/**
+ * One master scroll timeline for every visual layer in the hero. The canvas
+ * consumes the same progress ref, so camera, door, portal image, and props
+ * remain tied to the DOM handoff without any React render loop.
+ */
+export function useHeroScrollTimeline(
+  sectionRef: RefObject<HTMLElement | null>,
+  progressRef: MutableRefObject<number>,
+) {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-
     const ctx = gsap.context(() => {
-      // Pin the hero section while scroll progresses
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=200%",
-          pin: true,
-          scrub: 1.2,
-          anticipatePin: 1,
+      const photo = section.querySelector<HTMLElement>(".hero-scroll__photo");
+      const world = section.querySelector<HTMLElement>(".hero-scroll__world");
+      const copy = section.querySelector<HTMLElement>(".immersive-hero__copy");
+      const foot = section.querySelector<HTMLElement>(".immersive-hero__foot");
+      const caption = section.querySelector<HTMLElement>(".hero-scroll__caption");
+      const glow = section.querySelector<HTMLElement>(".hero-scroll__portal-glow");
+      const scrim = section.querySelector<HTMLElement>(".immersive-hero__scrim");
+      if (!photo || !world || !copy || !foot || !caption || !glow || !scrim) return;
+
+      const state = { progress: 0 };
+      const sync = () => renderProgress(progressRef, state.progress);
+      const media = gsap.matchMedia();
+
+      media.add(
+        "(min-width: 1025px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          gsap.set(world, { autoAlpha: 0, scale: 0.92 });
+          gsap.set([caption, glow], { autoAlpha: 0 });
+          gsap.set(photo, {
+            autoAlpha: 1,
+            scaleX: 1,
+            scaleY: 1,
+            x: 0,
+            y: 0,
+            zIndex: 1,
+            clipPath: "none",
+          });
+          gsap.set([copy, foot, scrim], { autoAlpha: 1 });
+
+          const timeline = gsap.timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "+=450%",
+              pin: true,
+              scrub: 0.8,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          timeline
+            .to(state, { progress: 1, duration: 1, onUpdate: sync }, 0)
+            // Phase 0: copy leaves before the image begins its portal morph.
+            .to(copy, { autoAlpha: 0, yPercent: -7, duration: 0.15 }, 0)
+            .to(foot, { autoAlpha: 0, duration: 0.13 }, 0.02)
+            .to(scrim, { autoAlpha: 0, duration: 0.17 }, 0.04)
+            // Phase 1: a full-screen image becomes the narrow, tall arch.
+            .to(photo, { scaleX: 0.18, scaleY: 0.76, duration: 0.42 }, 0.14)
+            .set(photo, { clipPath: "url(#kanaar-door-arch)" }, 0.5)
+            // Phase 2: the R3F door and its texture-mapped inner photo take over.
+            .to(world, { autoAlpha: 1, scale: 1, duration: 0.09 }, 0.56)
+            .to(glow, { autoAlpha: 0.76, scale: 1.08, duration: 0.14 }, 0.58)
+            .to(photo, { autoAlpha: 0, duration: 0.08 }, 0.6)
+            // Phase 3 remains canvas-only: the camera pushes in via progressRef.
+            .to(glow, { autoAlpha: 0.18, scale: 1.4, duration: 0.18 }, 0.72)
+            // Phase 4 is intentionally last, after the prop composition settles.
+            .to(caption, { autoAlpha: 1, y: 0, duration: 0.06 }, 0.95);
+
+          return () => timeline.kill();
         },
+      );
+
+      // The compact and reduced-motion variants show the resolved portal state
+      // without pinning a long, resource-heavy scroll experience.
+      media.add("(max-width: 1024px), (prefers-reduced-motion: reduce)", () => {
+        renderProgress(progressRef, 0.82);
+        gsap.set(world, { autoAlpha: 1, scale: 1 });
+        gsap.set(photo, {
+          autoAlpha: 0,
+          scaleX: 0.18,
+          scaleY: 0.76,
+          clipPath: "url(#kanaar-door-arch)",
+        });
+        gsap.set(glow, { autoAlpha: 0.24, scale: 1.18 });
+        gsap.set(caption, { autoAlpha: 1, y: 0 });
+        gsap.set([copy, foot, scrim], { autoAlpha: 1 });
       });
 
-      // Phase 1 (0–0.3): Photo scales down and moves centre
-      tl.to(".hero-scroll__photo", {
-        scale: 0.52,
-        y: "12vh",
-        ease: "none",
-      }, 0)
-      // Phase 1 concurrent: Gate grows in
-      .fromTo(".hero-scroll__gate", {
-        scale: 0.1,
-        opacity: 0,
-      }, {
-        scale: 1,
-        opacity: 1,
-        ease: "none",
-      }, 0)
-      // Phase 2 (0.3–0.65): Photo moves toward gate centre
-      .to(".hero-scroll__photo", {
-        scale: 0.22,
-        y: "0vh",
-        opacity: 0,
-        ease: "none",
-      }, 0.3)
-      // Phase 2: Gate becomes full focus
-      .to(".hero-scroll__gate", {
-        scale: 1.1,
-        ease: "none",
-      }, 0.3)
-      // Phase 3 (0.65–1.0): Objects float in around gate
-      .fromTo(".hero-scroll__obj", {
-        opacity: 0,
-        y: 30,
-        scale: 0.6,
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.08,
-        ease: "none",
-      }, 0.65)
-      // Phase 3: Caption fades in
-      .fromTo(".hero-scroll__caption", {
-        opacity: 0,
-        y: 20,
-      }, {
-        opacity: 1,
-        y: 0,
-        ease: "none",
-      }, 0.78);
-
+      return () => media.revert();
     }, section);
 
-    cleanupRef.current = () => ctx.revert();
     return () => ctx.revert();
-  }, [sectionRef]);
+  }, [progressRef, sectionRef]);
 }

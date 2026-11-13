@@ -40,10 +40,21 @@ export function About() {
         <div className="about__body">
           <div className="about__media">
             <div className="about__media-main" data-reveal="clip">
-              <Plate scene="arch" caption="The garden court" image={IMAGES.elegantRoom} imagePosition="50% 44%" />
+              <Plate
+                scene="arch"
+                caption="A quiet room"
+                image={IMAGES.elegantRoom}
+                imagePosition="50% 60%"
+                sizes="(max-width: 900px) 100vw, 42vw"
+              />
             </div>
             <div className="about__media-detail" data-reveal="fade" data-reveal-delay="0.3">
-              <Plate scene="facade" image={IMAGES.welcome} imagePosition="66% 42%" />
+              <Plate
+                scene="facade"
+                image={IMAGES.banquet}
+                imagePosition="62% 48%"
+                sizes="(max-width: 900px) 52vw, 18vw"
+              />
             </div>
             <span className="about__stamp">Peerumadara · Ramnagar</span>
           </div>

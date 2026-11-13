@@ -1,4 +1,5 @@
 import { Plate } from "@/components/media/Plate";
+import { IMAGES } from "@/lib/images";
 import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
 
 const diningNotes = [
@@ -23,10 +24,21 @@ export function Dining() {
         <div className="dining__grid">
           <div className="dining__media">
             <div className="dining__main" data-reveal="clip">
-              <Plate scene="dining" caption="Kanaar Dining" />
+              <Plate
+                scene="dining"
+                caption="Kanaar Dining"
+                image={IMAGES.banquet}
+                imagePosition="74% 48%"
+                sizes="(max-width: 900px) 100vw, 45vw"
+              />
             </div>
             <div className="dining__sub" data-reveal="fade" data-reveal-delay="0.3">
-              <Plate scene="terrace" />
+              <Plate
+                scene="terrace"
+                image={IMAGES.welcome}
+                imagePosition="30% 46%"
+                sizes="(max-width: 900px) 60vw, 24vw"
+              />
             </div>
             <div className="dining__ingredient" data-reveal data-reveal-delay="0.2">
               <span>From the Kumaon kitchen</span>

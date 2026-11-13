@@ -13,12 +13,12 @@ export const NAV_LINKS = [
 export const CONTACT = {
   name: "Hotel Kanaar Corbett",
   strapline: "A unit of The Corbett Ramdutt",
-  address: "Peerumadara, Ramnagar, Dist. Nainital, Uttarakhand",
+  address: "Jim Corbett, Peerumadara, Ramnagar, Dist. Nainital, Uttarakhand.",
   mapUrl:
-    "https://maps.google.com/?q=Peerumadara+Ramnagar+Nainital+Uttarakhand",
-  phonePrimary: "+91 89543 89999",
+    "https://www.google.com/maps/dir/?api=1&destination=29.3377768,79.0581322",
+  phonePrimary: "+91 8954389999",
   phonePrimaryHref: "tel:+918954389999",
-  phoneSecondary: "+91 74177 47918",
+  phoneSecondary: "+91 7417747918",
   phoneSecondaryHref: "tel:+917417747918",
   whatsapp: "https://wa.me/917417747918",
   email: "thekanaarcorbett@gmail.com",
@@ -75,8 +75,8 @@ type EventSpace = {
   description: string;
   details: string[];
   scene: Scene;
-  image?: SiteImage;
-  imagePosition?: string;
+  image: SiteImage;
+  imagePosition: string;
 };
 
 export const EVENT_SPACES: EventSpace[] = [
@@ -101,6 +101,10 @@ export const EVENT_SPACES: EventSpace[] = [
       "A focused, professional environment with 4K projection, fast connectivity, and the quiet service that good work needs.",
     details: ["4K AV projection", "High-speed Wi-Fi", "Podium & microphones", "Flexible seating"],
     scene: "conference" as const,
+    // The grand hall is the available event-space photograph; this tighter crop
+    // emphasises its lighting and formal layout for the conference card.
+    image: IMAGES.banquet,
+    imagePosition: "68% 45%",
   },
   {
     index: "03",
@@ -111,6 +115,10 @@ export const EVENT_SPACES: EventSpace[] = [
       "A warm, private room for birthdays, anniversaries, ring ceremonies, and family evenings that deserve their own stage.",
     details: ["Party sound system", "Custom theme decor", "Private dining", "Warm, intimate scale"],
     scene: "dining" as const,
+    // The welcome display is the most fitting available image for an intimate,
+    // decorated celebration.
+    image: IMAGES.welcome,
+    imagePosition: "54% 42%",
   },
 ];
 
@@ -120,18 +128,24 @@ export const EXPERIENCES = [
     title: "Forest mornings",
     copy: "Mist in the sal trees, birdsong before breakfast, and the particular quiet of the Kumaon foothills at first light.",
     scene: "forest" as const,
+    image: IMAGES.welcome,
+    imagePosition: "68% 40%",
   },
   {
     index: "02",
     title: "River country",
     copy: "The Kosi runs through Ramnagar, tracing the edge of the terai. Days here are measured in water, light, and long lunches.",
     scene: "river" as const,
+    image: IMAGES.luxuryRoom,
+    imagePosition: "62% 54%",
   },
   {
     index: "03",
     title: "Slow evenings",
     copy: "Return from the wild to warm light, a table set for everyone you love, and nowhere else to be.",
     scene: "terrace" as const,
+    image: IMAGES.elegantRoom,
+    imagePosition: "50% 64%",
   },
 ];
 
@@ -139,8 +153,8 @@ type GalleryItem = {
   caption: string;
   scene: Scene;
   span: "tall" | "wide" | "normal";
-  image?: SiteImage;
-  imagePosition?: string;
+  image: SiteImage;
+  imagePosition: string;
 };
 
 export const GALLERY: GalleryItem[] = [
@@ -179,9 +193,27 @@ export const GALLERY: GalleryItem[] = [
     image: IMAGES.banquet,
     imagePosition: "50% 50%",
   },
-  { caption: "Into the wild", scene: "forest", span: "tall" },
-  { caption: "Afternoons by the water", scene: "pool", span: "normal" },
-  { caption: "The long verandah", scene: "terrace", span: "normal" },
+  {
+    caption: "A Kanaar welcome",
+    scene: "forest",
+    span: "tall",
+    image: IMAGES.welcome,
+    imagePosition: "32% 42%",
+  },
+  {
+    caption: "A generous room",
+    scene: "pool",
+    span: "normal",
+    image: IMAGES.elegantRoom,
+    imagePosition: "56% 60%",
+  },
+  {
+    caption: "Grand hall details",
+    scene: "terrace",
+    span: "normal",
+    image: IMAGES.banquet,
+    imagePosition: "76% 44%",
+  },
 ];
 
 export const TESTIMONIALS = [
