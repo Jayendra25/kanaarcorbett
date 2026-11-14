@@ -121,6 +121,84 @@ html {
   will-change: opacity;
 }
 
+/* The compact hero swaps the gate photograph for the twilight facade. */
+.immersive-hero__mobile-photo {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .immersive-hero__mobile-photo {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    background: #211a13;
+  }
+
+  /* The scroll-scrubbed gate layers are desktop-only; compact screens use
+     the twilight photograph above. */
+  .hero-scroll__photo,
+  .hero-scroll__world,
+  .hero-scroll__fallback,
+  .immersive-hero__scrim {
+    display: none;
+  }
+
+  .immersive-hero__mobile-photo img {
+    object-fit: cover;
+    object-position: 50% 46%;
+  }
+
+  .immersive-hero__mobile-photo-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(12, 10, 8, 0.72) 0%,
+      rgba(12, 10, 8, 0.46) 26%,
+      rgba(12, 10, 8, 0.34) 46%,
+      rgba(12, 10, 8, 0.42) 64%,
+      rgba(12, 10, 8, 0.7) 82%,
+      rgba(12, 10, 8, 0.86) 100%
+    );
+  }
+
+  /* The fixed header sits over the twilight photograph until scrolled. */
+  .site-header:not(.is-scrolled) .brand__hotel {
+    color: #e3c891;
+  }
+
+  .site-header:not(.is-scrolled) .brand__name {
+    color: #fffaf1;
+  }
+
+  .site-header:not(.is-scrolled) .brand__name em {
+    color: #e6c789;
+  }
+
+  .site-header:not(.is-scrolled) .brand__sub {
+    color: rgba(255, 250, 241, 0.62);
+  }
+
+  .site-header:not(.is-scrolled) .site-nav a {
+    color: rgba(255, 250, 241, 0.82);
+  }
+
+  .site-header:not(.is-scrolled) .site-nav a:hover {
+    color: #fffaf1;
+  }
+
+  .site-header:not(.is-scrolled) .menu-toggle {
+    color: #fffaf1;
+  }
+
+  .site-header:not(.is-scrolled) .menu-toggle__lines span {
+    background: #fffaf1;
+  }
+}
+
 .hero-scroll__portal-glow {
   position: absolute;
   z-index: 2;
@@ -302,7 +380,7 @@ html {
   }
 
   .immersive-hero__title {
-    max-width: 8ch;
+    max-width: 14ch;
     font-size: clamp(2.65rem, 12vw, 4rem);
   }
 

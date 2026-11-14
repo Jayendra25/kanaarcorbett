@@ -89,9 +89,26 @@ export function useHeroScrollTimeline(
         },
       );
 
-      // The compact and reduced-motion variants show the resolved portal state
-      // without pinning a long, resource-heavy scroll experience.
-      media.add("(max-width: 1024px), (prefers-reduced-motion: reduce)", () => {
+      // The compact hero uses the twilight photograph in place of the gate
+      // photo, so the resolved portal state is not shown there.
+      media.add("(max-width: 1024px)", () => {
+        renderProgress(progressRef, 0.82);
+        gsap.set(world, { autoAlpha: 1, scale: 1 });
+        gsap.set(photo, {
+          autoAlpha: 0,
+          scaleX: 0.18,
+          scaleY: 0.76,
+          clipPath: "url(#kanaar-door-arch)",
+        });
+        gsap.set(glow, { autoAlpha: 0.24, scale: 1.18 });
+        gsap.set(caption, { autoAlpha: 1, y: 0 });
+        gsap.set([copy, foot], { autoAlpha: 1 });
+        // The mobile photograph has its own vertical scrim.
+        gsap.set(scrim, { autoAlpha: 0 });
+      });
+
+      // Reduced motion keeps the resolved portal state without pinning.
+      media.add("(min-width: 1025px) and (prefers-reduced-motion: reduce)", () => {
         renderProgress(progressRef, 0.82);
         gsap.set(world, { autoAlpha: 1, scale: 1 });
         gsap.set(photo, {

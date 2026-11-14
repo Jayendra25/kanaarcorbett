@@ -90,7 +90,7 @@ export function Gallery() {
                 ratio={ratios[item.span] ?? ratios.normal}
                 image={item.image}
                 imagePosition={item.imagePosition}
-                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 25vw"
+                sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 32vw"
               />
               <span className="gallery__caption">
                 {item.caption}
@@ -147,7 +147,12 @@ export function Gallery() {
                   exit={{ opacity: 0, scale: 0.99 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Plate scene={activeItem.scene} image={activeItem.image} imagePosition={activeItem.imagePosition} />
+                  <Plate
+                    scene={activeItem.scene}
+                    image={activeItem.image}
+                    imagePosition={activeItem.imagePosition}
+                    sizes="(max-width: 900px) 100vw, 1080px"
+                  />
                 </motion.div>
               </AnimatePresence>
             </div>

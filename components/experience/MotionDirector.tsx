@@ -94,9 +94,9 @@ export function MotionDirector() {
 
       /* Slow image drift -------------------------------------------------- */
       const drifts: Array<[string, number]> = [
-        [".about__media-main .plate__art", 5],
-        [".dining__main .plate__art", 5],
-        [".hero__arch .plate__art", 4],
+        [".about__media-main .plate__img, .about__media-main .plate__art", 5],
+        [".dining__main .plate__img, .dining__main .plate__art", 5],
+        [".hero__arch .plate__img, .hero__arch .plate__art", 4],
       ];
 
       drifts.forEach(([selector, amount]) => {

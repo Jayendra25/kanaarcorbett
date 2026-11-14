@@ -41,18 +41,18 @@ export function About() {
           <div className="about__media">
             <div className="about__media-main" data-reveal="clip">
               <Plate
-                scene="arch"
-                caption="A quiet room"
-                image={IMAGES.elegantRoom}
-                imagePosition="50% 60%"
+                scene="facade"
+                caption="The Kanaar entrance"
+                image={IMAGES.festiveEntrance}
+                imagePosition="50% 50%"
                 sizes="(max-width: 900px) 100vw, 42vw"
               />
             </div>
             <div className="about__media-detail" data-reveal="fade" data-reveal-delay="0.3">
               <Plate
-                scene="facade"
-                image={IMAGES.banquet}
-                imagePosition="62% 48%"
+                scene="arch"
+                image={IMAGES.elegantRoom}
+                imagePosition="50% 58%"
                 sizes="(max-width: 900px) 52vw, 18vw"
               />
             </div>

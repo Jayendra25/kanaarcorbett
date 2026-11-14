@@ -47,6 +47,21 @@ export function ImmersiveHero() {
       data-webgl={webgl === null ? "pending" : webgl ? "true" : "false"}
       aria-label="Hotel Kanaar Corbett — Welcome"
     >
+      {compact ? (
+        <div className="immersive-hero__mobile-photo" aria-hidden="true">
+          <Image
+            src={IMAGES.twilight.src}
+            alt=""
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "50% 46%" }}
+          />
+          <div className="immersive-hero__mobile-photo-scrim" />
+        </div>
+      ) : null}
+
       <div className="immersive-hero__copy">
         <p className="eyebrow">A unit of The Corbett Ramdutt</p>
         <h1 className="immersive-hero__title">

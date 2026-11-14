@@ -40,7 +40,7 @@ export function Corbett() {
                   scene={experience.scene}
                   image={experience.image}
                   imagePosition={experience.imagePosition}
-                  sizes="100vw"
+                  sizes="(max-width: 900px) 100vw, 66vw"
                   dark
                 />
               </div>

@@ -102,10 +102,8 @@ export const EVENT_SPACES: EventSpace[] = [
       "A focused, professional environment with 4K projection, fast connectivity, and the quiet service that good work needs.",
     details: ["4K AV projection", "High-speed Wi-Fi", "Podium & microphones", "Flexible seating"],
     scene: "conference" as const,
-    // The grand hall is the available event-space photograph; this tighter crop
-    // emphasises its lighting and formal layout for the conference card.
     image: IMAGES.conference,
-    imagePosition: "68% 45%",
+    imagePosition: "50% 50%",
   },
   {
     index: "03",
@@ -116,37 +114,40 @@ export const EVENT_SPACES: EventSpace[] = [
       "A warm, private room for birthdays, anniversaries, ring ceremonies, and family evenings that deserve their own stage.",
     details: ["Party sound system", "Custom theme decor", "Private dining", "Warm, intimate scale"],
     scene: "dining" as const,
-    // The welcome display is the most fitting available image for an intimate,
-    // decorated celebration.
-    image: IMAGES.welcome,
-    imagePosition: "54% 42%",
+    image: IMAGES.celebrationStage,
+    imagePosition: "50% 58%",
   },
 ];
 
-export const EXPERIENCES = [
+type Experience = {
+  index: string;
+  title: string;
+  copy: string;
+  scene: Scene;
+  image?: SiteImage;
+  imagePosition?: string;
+};
+
+export const EXPERIENCES: Experience[] = [
   {
     index: "01",
     title: "Forest mornings",
     copy: "Mist in the sal trees, birdsong before breakfast, and the particular quiet of the Kumaon foothills at first light.",
     scene: "forest" as const,
-    image: IMAGES.welcome,
-    imagePosition: "68% 40%",
   },
   {
     index: "02",
     title: "River country",
     copy: "The Kosi runs through Ramnagar, tracing the edge of the terai. Days here are measured in water, light, and long lunches.",
     scene: "river" as const,
-    image: IMAGES.luxuryRoom,
-    imagePosition: "62% 54%",
   },
   {
     index: "03",
     title: "Slow evenings",
     copy: "Return from the wild to warm light, a table set for everyone you love, and nowhere else to be.",
     scene: "terrace" as const,
-    image: IMAGES.elegantRoom,
-    imagePosition: "50% 64%",
+    image: IMAGES.twilight,
+    imagePosition: "50% 52%",
   },
 ];
 
@@ -167,6 +168,13 @@ export const GALLERY: GalleryItem[] = [
     imagePosition: "66% 42%",
   },
   {
+    caption: "An entrance in bloom",
+    scene: "facade",
+    span: "wide",
+    image: IMAGES.festiveEntrance,
+    imagePosition: "50% 52%",
+  },
+  {
     caption: "Warm light, soft linens",
     scene: "arch",
     span: "wide",
@@ -179,6 +187,13 @@ export const GALLERY: GalleryItem[] = [
     span: "normal",
     image: IMAGES.luxuryRoom,
     imagePosition: "48% 55%",
+  },
+  {
+    caption: "After dark, aglow",
+    scene: "facade",
+    span: "tall",
+    image: IMAGES.twilight,
+    imagePosition: "50% 52%",
   },
   {
     caption: "Space to settle in",

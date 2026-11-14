@@ -1565,6 +1565,10 @@
   height: 100%;
 }
 
+.lightbox__figure .plate__img {
+  object-fit: contain;
+}
+
 .lightbox__foot {
   display: flex;
   align-items: center;
