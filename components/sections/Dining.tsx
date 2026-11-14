@@ -33,7 +33,12 @@ export function Dining() {
               />
             </div>
             <div className="dining__sub" data-reveal="fade" data-reveal-delay="0.3">
-              <Plate scene="terrace" sizes="(max-width: 900px) 60vw, 24vw" />
+              <Plate
+                scene="dining"
+                image={IMAGES.welcome}
+                imagePosition="56% 44%"
+                sizes="(max-width: 900px) 60vw, 24vw"
+              />
             </div>
             <div className="dining__ingredient" data-reveal data-reveal-delay="0.2">
               <span>From the Kumaon kitchen</span>

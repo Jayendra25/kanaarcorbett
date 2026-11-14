@@ -134,12 +134,19 @@ export const EXPERIENCES: Experience[] = [
     title: "Forest mornings",
     copy: "Mist in the sal trees, birdsong before breakfast, and the particular quiet of the Kumaon foothills at first light.",
     scene: "forest" as const,
+    // Morning light on the property's planted entrance is the closest
+    // available photograph to the section's outdoors-at-first-light mood.
+    image: IMAGES.festiveEntrance,
+    imagePosition: "50% 46%",
   },
   {
     index: "02",
     title: "River country",
     copy: "The Kosi runs through Ramnagar, tracing the edge of the terai. Days here are measured in water, light, and long lunches.",
     scene: "river" as const,
+    // The set banquet tables carry the "long lunches" half of the panel.
+    image: IMAGES.magentaBanquet,
+    imagePosition: "50% 46%",
   },
   {
     index: "03",
