@@ -49,7 +49,7 @@ export const IMAGES = {
     height: 1086,
   },
   twilight: {
-    src: "/images/hotel/twilight-glow.png",
+    src: "/images/hero2.png",
     alt: "Hotel Kanaar Corbett's white facade illuminated with warm fairy lights against a deep blue twilight sky",
     width: 1086,
     height: 1448,
