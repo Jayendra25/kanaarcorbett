@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
 
 const diningNotes = [
   {
-    name: "Multi-cuisine dining",
+    name: "Pahadi & multi-cuisine dining",
     note: "All day",
   },
   {
@@ -26,22 +26,22 @@ export function Dining() {
             <div className="dining__main" data-reveal="clip">
               <Plate
                 scene="dining"
-                caption="Private dining & feasts"
-                image={IMAGES.magentaBanquet}
-                imagePosition="50% 50%"
+                caption="A traditional Pahadi thali"
+                image={IMAGES.pahadiThali}
+                imagePosition="50% 52%"
                 sizes="(max-width: 900px) 100vw, 45vw"
               />
             </div>
             <div className="dining__sub" data-reveal="fade" data-reveal-delay="0.3">
               <Plate
                 scene="dining"
-                image={IMAGES.welcome}
-                imagePosition="56% 44%"
+                image={IMAGES.uttarakhandCuisine}
+                imagePosition="50% 50%"
                 sizes="(max-width: 900px) 60vw, 24vw"
               />
             </div>
             <div className="dining__ingredient" data-reveal data-reveal-delay="0.2">
-              <span>From the Kumaon kitchen</span>
+              <span>From the Uttarakhand kitchen</span>
               <p>Bhatt ki churkani, chainsoo &amp; bal mithai.</p>
             </div>
           </div>
@@ -53,19 +53,21 @@ export function Dining() {
             </div>
             <h2 className="h2" data-reveal-lines>
               <span className="line-mask">
-                <span>Kumaoni soul,</span>
+                <span>A taste of</span>
+              </span>
+              <span className="line-mask">
+                <span>authentic</span>
               </span>
               <span className="line-mask">
                 <span>
-                  served with <em>grace.</em>
+                  <em>Pahadi cuisine</em>
                 </span>
               </span>
             </h2>
             <p className="lead dining__lead" data-reveal>
-              Authentic culinary delights, a welcoming room, and menus that move
-              easily from breakfast to celebration. Our restaurant serves room
-              guests and grand events alike, with fresh, thoughtful cooking at its
-              centre.
+              Discover the authentic flavours of Uttarakhand through traditional
+              Pahadi dishes, local ingredients, age-old recipes, and the warmth of
+              mountain hospitality.
             </p>
 
             <ul className="dining__list" data-stagger>

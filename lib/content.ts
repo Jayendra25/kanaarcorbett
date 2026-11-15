@@ -51,7 +51,7 @@ export const ROOMS = [
     name: "Luxury Room",
     kicker: "Signature Stay",
     description:
-      "Generous in scale and lavishly appointed, with a private balcony, a seating lounge, and views across the Kumaon landscape.",
+      "Generous in scale and lavishly appointed, with a private balcony, a seating lounge, and views across the Uttarakhand hills.",
     size: "550 sq ft",
     occupancy: "2 adults + 2 children",
     bed: "Super king",
@@ -132,7 +132,7 @@ export const EXPERIENCES: Experience[] = [
   {
     index: "01",
     title: "Forest mornings",
-    copy: "Mist in the sal trees, birdsong before breakfast, and the particular quiet of the Kumaon foothills at first light.",
+    copy: "Mist in the sal trees, birdsong before breakfast, and the particular quiet of the Uttarakhand foothills at first light.",
     scene: "forest" as const,
     // Morning light on the property's planted entrance is the closest
     // available photograph to the section's outdoors-at-first-light mood.

@@ -76,8 +76,8 @@ export function About() {
               </p>
               <p data-reveal data-reveal-delay="0.18">
                 Understated interiors, attentive service, and a deep sense of place
-                come together here — a hotel shaped by the Kumaon landscape and the
-                people who call it home.
+                come together here — a hotel shaped by the Uttarakhand landscape and
+                the people who call it home.
               </p>
             </div>
 

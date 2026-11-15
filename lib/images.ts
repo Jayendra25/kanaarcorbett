@@ -60,6 +60,18 @@ export const IMAGES = {
     width: 1086,
     height: 1448,
   },
+  pahadiThali: {
+    src: "/images/food/pahadi-food-thali.jpeg",
+    alt: "A traditional Pahadi thali with rice, roti, seasonal greens, dal, chutney, and papad served on a steel plate",
+    width: 588,
+    height: 441,
+  },
+  uttarakhandCuisine: {
+    src: "/images/food/traditional-uttarakhand-cuisine.png",
+    alt: "A traditional Uttarakhand food platter with rice, rotis, seasonal curries, fritters, and sweets on a wooden tray",
+    width: 758,
+    height: 431,
+  },
   celebrationStage: {
     src: "/images/banquet/celebration-stage.jpg",
     alt: "A private celebration stage at Hotel Kanaar Corbett with a green sofa, floral garlands, and warm pink lighting",
