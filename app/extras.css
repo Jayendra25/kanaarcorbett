@@ -469,3 +469,63 @@ html {
     max-width: 22ch;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Floating contact rail
+   -------------------------------------------------------------------------- */
+
+.contact-rail {
+  position: fixed;
+  right: clamp(0.9rem, 2vw, 1.6rem);
+  bottom: max(clamp(0.9rem, 2vw, 1.6rem), env(safe-area-inset-bottom));
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.contact-rail__link {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: var(--gold-pale);
+  background: var(--charcoal);
+  border: 1px solid rgba(216, 198, 167, 0.32);
+  box-shadow: 0 10px 26px rgba(36, 33, 29, 0.22);
+  transition:
+    transform 0.35s var(--ease-out),
+    background-color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+}
+
+.contact-rail__link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-rail__link:hover {
+  transform: translateY(-2px);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+}
+
+.contact-rail__link:focus-visible {
+  outline: 2px solid var(--gold-ink);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .contact-rail__link {
+    width: 42px;
+    height: 42px;
+  }
+
+  .contact-rail__link svg {
+    width: 18px;
+    height: 18px;
+  }
+}

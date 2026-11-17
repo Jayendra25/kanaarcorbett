@@ -4,6 +4,7 @@ import { MotionDirector } from "@/components/experience/MotionDirector";
 import { SmoothScroll } from "@/components/experience/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ContactRail } from "@/components/layout/ContactRail";
 import { CONTACT } from "@/lib/content";
 import "./globals.css";
 import "./sections.css";
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <ContactRail />
         </IntroProvider>
         <script
           type="application/ld+json"

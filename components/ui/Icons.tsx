@@ -107,6 +107,25 @@ export function Phone({ className, size }: IconProps) {
   );
 }
 
+export function WhatsApp({ className, size }: IconProps) {
+  return (
+    <svg {...base(size)} className={className} aria-hidden="true">
+      <path d="M20.4 11.6a8.3 8.3 0 0 1-12.3 7.4L3.6 20.4l1.5-4.4a8.3 8.3 0 1 1 15.3-4.4Z" />
+      <path d="M9.1 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.5l.7 1.5c.1.2 0 .4-.1.6l-.4.5c-.1.2-.2.3 0 .6.4.7 1.1 1.4 1.9 1.9.2.1.4.1.6-.1l.6-.7c.1-.2.4-.2.5-.1l1.5.8c.2.1.3.3.3.5 0 .6-.2 1.3-.5 1.7-.4.4-1 .7-1.8.7-1 0-2.6-.4-4.1-1.8-1.1-1-1.9-2.2-2.2-3-.3-.8-.1-1.5.2-2.1Z" />
+    </svg>
+  );
+}
+
+export function Instagram({ className, size }: IconProps) {
+  return (
+    <svg {...base(size)} className={className} aria-hidden="true">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="16.9" cy="7.1" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function ParkingIndoor({ className, size }: IconProps) {
   return (
     <svg {...base(size)} className={className}>
